@@ -8,6 +8,10 @@ use Planck\Aspect\Application;
 class User extends Application
 {
 
+    /**
+     * @var \Planck\Extension\User\Model\Entity\User
+     */
+    private $user;
 
     public static function getName()
     {
@@ -28,6 +32,10 @@ class User extends Application
     public function getCurrentUser($cast = null)
     {
 
+        if($this->user) {
+            return $this->user;
+        }
+
         $session = $this->application->getRequest()->getSession();
         if($session) {
             $userData = $session->get('user');
@@ -38,6 +46,7 @@ class User extends Application
                 $values = json_decode($userData, true);
                 if($values) {
                     $user->setValues($values);
+                    $this->user = $user;
                     return $user;
                 }
             }
