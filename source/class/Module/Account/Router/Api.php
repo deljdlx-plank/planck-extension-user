@@ -5,7 +5,7 @@ namespace Planck\Extension\User\Module\Account\Router;
 
 
 use Planck\Extension\User\Model\Entity\User;
-use Planck\Router;
+use Planck\Routing\Router;
 
 
 class Api extends Router
@@ -29,8 +29,7 @@ class Api extends Router
 
             $loginValid = $user->checkLogin($email, $password);
             if($loginValid) {
-
-                $this->getVariable('application')->setUser($user);
+                $this->getApplication()->setUser($user);
                 echo json_encode($user);
             }
             else {
@@ -46,7 +45,7 @@ class Api extends Router
 
 
         $this->get('logout', '`/account/api/logout`', function() {
-            $this->getVariable('application')->setUser(null);
+            $this->getApplication()->setUser(null);
             echo json_encode(true);
         })
             ->json()
