@@ -3,9 +3,9 @@
 namespace Planck\Extension\User\Aspect;
 
 
-use Planck\Aspect\Application;
+use Planck\Application\Aspect;
 
-class User extends Application
+class User extends Aspect
 {
 
     /**
