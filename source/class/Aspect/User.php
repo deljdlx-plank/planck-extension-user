@@ -18,6 +18,17 @@ class User extends Aspect
         return 'user';
     }
 
+
+    public function getUser($cast = null)
+    {
+        return $this->getCurrentUser($cast);
+    }
+
+    public function setUser($user)
+    {
+        return $this->setCurrentUser($user);
+    }
+
     public function setCurrentUser($user)
     {
         $session = $this->application->getRequest()->getSession();
